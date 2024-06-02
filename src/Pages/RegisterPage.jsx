@@ -57,15 +57,14 @@ function RegisterPage() {
     }
     return (
         <>
-            {    user?
-                <>
-                    <Navigate to = '/profile'></Navigate>
-                </>
-                :
-        
+        {    
+        user?
+            <>
+                <Navigate to = '/profile'></Navigate>
+            </>
+        :
             loading? <Spinner></Spinner>
-            :
-            
+        :
         <>
             <Helmet>
                 <title>Deliver | Register</title>
