@@ -1,8 +1,11 @@
 import React from 'react'
+import OrderPage from './OrderPage'
 
 function Homepage() {
   return (
-    <div>Homepage</div>
+    <div>
+      <OrderPage></OrderPage>
+    </div>
   )
 }
 

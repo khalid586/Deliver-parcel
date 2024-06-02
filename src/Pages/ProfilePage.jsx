@@ -42,7 +42,7 @@
 //     return(
 //         <div>
 //         <Helmet>
-//             <title>Books Buy | User profile</title>
+//             <title>Deliver | User profile</title>
 //         </Helmet>
 //         {
 //             loading ? <Spinner></Spinner> : 
