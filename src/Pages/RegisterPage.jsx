@@ -9,6 +9,7 @@ import { FaEye } from "react-icons/fa";
 import { AuthContext } from '../Providers/AuthProvider';
 import { Helmet } from 'react-helmet';
 import Spinner from '../Components/Spinner';
+import SaveData from '../Utils/SaveData';
 
 
 function RegisterPage() {
@@ -47,6 +48,9 @@ function RegisterPage() {
                     displayName:name,
                     photoURL:photoUrl,
                 }).then(()=>{
+                    console.log(result.user.displayName,result.user.email);
+                    SaveData(result.user.displayName,result.user.email);
+
                     setTimeout(()=>{
                         navigate(location?.state?location.state:'/')
                     },2000)

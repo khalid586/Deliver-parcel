@@ -13,6 +13,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { Helmet } from 'react-helmet';
 import Spinner from '../Components/Spinner';
+import SaveData from '../Utils/SaveData';
 
 
 function LoginPage() {
@@ -73,7 +74,9 @@ function LoginPage() {
 
         if(method == 'google'){
             signInWithPopup(auth,provider)
-                .then(()=>{
+                .then((result)=>{
+                    console.log(result.user.displayName,result.user.email)
+                    SaveData(result.user.displayName,result.user.email);
                     navigateToPage();
                 })
                 .catch(error => {toast.error(error.message); setLoading(false)})

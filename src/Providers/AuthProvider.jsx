@@ -29,14 +29,6 @@ function AuthProvider({ children }) {
         const unSubscribe = onAuthStateChanged(auth,currUser=>{
             console.log(currUser);
             setUser(currUser);
-            if(currUser){
-                const userData = {
-                    name:currUser.displayName,
-                    email:currUser.email,
-                }
-                axios.post('http://localhost:5007/users',userData)
-                .then(({data})=> console.log(data))
-            }
             setLoading(false);  
         })
 
