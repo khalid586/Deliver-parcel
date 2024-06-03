@@ -19,7 +19,7 @@ function ProfilePage() {
             setUrl(user?.photoURL);
             setInvalidImage(false);
         }
-    },[loading])
+    },[loading,user])
 
     function defaultImage(){
         if(!loading){            
