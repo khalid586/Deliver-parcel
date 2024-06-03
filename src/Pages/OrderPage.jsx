@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
+import axios from 'axios';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 function OrderPage() {
   const { user } = useContext(AuthContext);
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
@@ -91,7 +95,20 @@ function OrderPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData)
+
+    const form = e.target;
+
+    axios.post('http://localhost:5007/place_order',formData)
+    .then(({data}) => {
+      console.log(data)
+      if(data.acknowledged){
+        toast.success('Percel order plaecd successfully!')
+        setTimeout(()=>{
+          navigate('/my_percels');
+        },1000)
+      }
+    })
+    
   };
 
   return (
@@ -201,10 +218,11 @@ function OrderPage() {
             type="submit"
             className="px-6 py-2 bg-blue-500 text-white font-bold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            Book
+            Submit
           </button>
         </div>
       </form>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

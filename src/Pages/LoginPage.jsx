@@ -59,6 +59,13 @@ function LoginPage() {
 
         function navigateToPage(){
             toast.success('Login Successful')
+
+            if(user){
+                axios.put('http://localhost:5007/users',user)
+                .then(res => console.log(res.data))
+                .then(err => console.log(err))
+            }
+
             setTimeout(()=>{
                 navigate(location?.state?location.state:'/')
             },1500)
