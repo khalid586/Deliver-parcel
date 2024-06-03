@@ -3,7 +3,7 @@ import { AuthContext } from '../Providers/AuthProvider'
 import axios from 'axios';
 import Title from '../Components/Title';
 
-function MyPercels() {
+function Myparcels() {
   const {user} = useContext(AuthContext);
   const [orders,setOrders] = useState([]);
 
@@ -92,4 +92,4 @@ function MyPercels() {
   )
 }
 
-export default MyPercels
+export default Myparcels

@@ -102,9 +102,9 @@ function OrderPage() {
     .then(({data}) => {
       console.log(data)
       if(data.acknowledged){
-        toast.success('Percel order plaecd successfully!')
+        toast.success('parcel order plaecd successfully!')
         setTimeout(()=>{
-          navigate('/my_percels');
+          navigate('/my_parcels');
         },1000)
       }
     })

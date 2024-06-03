@@ -81,7 +81,7 @@ function Navbar() {
                         </div>
                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link to="/profile" onClick={closeDropdown}>Profile</Link></li>
-                            <li><Link to = {`/my_percels`} onClick={closeDropdown}>My Percels</Link></li>
+                            <li><Link to = {`/my_parcels`} onClick={closeDropdown}>My parcels</Link></li>
                         </ul>
                     </div>
                     :

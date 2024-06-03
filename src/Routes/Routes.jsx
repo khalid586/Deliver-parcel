@@ -7,7 +7,7 @@ import RegisterPage from '../Pages/RegisterPage'
 import ProfilePage from "../Pages/ProfilePage";
 import OrderPage from "../Pages/OrderPage";
 import ProtectedRoute from "./ProtectedRoute";
-import MyPercels from "../Pages/MyPercels";
+import Myparcels from "../Pages/MyParcels";
 
 const  router = createBrowserRouter([
     {
@@ -36,8 +36,8 @@ const  router = createBrowserRouter([
           element:<ProtectedRoute><OrderPage></OrderPage></ProtectedRoute>
         },
         {
-          path:'/my_percels',
-          element:<ProtectedRoute><MyPercels></MyPercels></ProtectedRoute>
+          path:'/my_parcels',
+          element:<ProtectedRoute><Myparcels></Myparcels></ProtectedRoute>
         },
       ]
     },
