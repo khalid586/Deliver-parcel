@@ -10,14 +10,13 @@ import { UserContext } from '../Providers/UserProvider';
 function Navbar() {
     const { user, loading } = useContext(AuthContext);
 
-    
+
     const {currUser} = useContext(UserContext);
     const {role} = currUser;
 
     const list = 
     <div className='flex flex-col lg:flex-row gap-2 font-semibold'>
         <li><NavLink to="/" className={({isActive})=>isActive?'text-blue-600 duration-500 rounded-full px-4 py-2 bg-blue-50 flex justify-center':'text-black px-4 py-2  flex   justify-center'}><p className='flex gap-0.5 items-center'><IoHomeOutline className='text-blue-600 font-extrabold'></IoHomeOutline> Home</p></NavLink></li>
-        {/* <li><NavLink to="/add_book" className={({isActive})=>isActive?'text-blue-600 duration-500 rounded-full px-4 py-2 bg-blue-50 flex justify-center':'text-black px-4 py-2  flex   justify-center'}><p className='flex gap-0.5 items-center'><IoMdAddCircleOutline className='text-green-600 font-extrabold'></IoMdAddCircleOutline> Add Book</p></NavLink></li> */}
         {
             user && role === 'user' &&
             <li><NavLink to="/place_order" className={({isActive})=>isActive?'text-blue-600 duration-500 rounded-full px-4 py-2 bg-blue-50 flex justify-center':'text-black px-4 py-2  flex   justify-center'}><p className='flex gap-0.5 items-center'><MdOutlineFilePresent className='text-red-400 font-extrabold'></MdOutlineFilePresent> Place Order</p></NavLink></li>
@@ -27,7 +26,7 @@ function Navbar() {
     const adminPanel = 
     <>
         <li><Link to="/profile">Profile</Link></li>
-        <li><Link to = {`/my_parcels`}>My parcels</Link></li>
+        <li><Link to = {`/users`}>All users</Link></li>
     </>
 
     const userPanel = 

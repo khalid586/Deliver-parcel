@@ -8,6 +8,7 @@ import ProfilePage from "../Pages/ProfilePage";
 import OrderPage from "../Pages/OrderPage";
 import ProtectedRoute from "./ProtectedRoute";
 import Myparcels from "../Pages/MyParcels";
+import UsersPage from "../Pages/admin/UsersPage";
 
 const  router = createBrowserRouter([
     {
@@ -38,6 +39,10 @@ const  router = createBrowserRouter([
         {
           path:'/my_parcels',
           element:<ProtectedRoute><Myparcels></Myparcels></ProtectedRoute>
+        },
+        {
+          path:'/users',
+          element:<ProtectedRoute><UsersPage></UsersPage></ProtectedRoute>
         },
       ]
     },
