@@ -5,18 +5,42 @@ import Spinner from './Spinner';
 import { IoHomeOutline } from 'react-icons/io5';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 import { MdOutlineFilePresent } from 'react-icons/md';
+import { UserContext } from '../Providers/UserProvider';
 
 function Navbar() {
     const { user, loading } = useContext(AuthContext);
+
+    
+    const {currUser} = useContext(UserContext);
+    const {role} = currUser;
+
     const list = 
     <div className='flex flex-col lg:flex-row gap-2 font-semibold'>
         <li><NavLink to="/" className={({isActive})=>isActive?'text-blue-600 duration-500 rounded-full px-4 py-2 bg-blue-50 flex justify-center':'text-black px-4 py-2  flex   justify-center'}><p className='flex gap-0.5 items-center'><IoHomeOutline className='text-blue-600 font-extrabold'></IoHomeOutline> Home</p></NavLink></li>
         {/* <li><NavLink to="/add_book" className={({isActive})=>isActive?'text-blue-600 duration-500 rounded-full px-4 py-2 bg-blue-50 flex justify-center':'text-black px-4 py-2  flex   justify-center'}><p className='flex gap-0.5 items-center'><IoMdAddCircleOutline className='text-green-600 font-extrabold'></IoMdAddCircleOutline> Add Book</p></NavLink></li> */}
         {
-            user && 
+            user && role === 'user' &&
             <li><NavLink to="/place_order" className={({isActive})=>isActive?'text-blue-600 duration-500 rounded-full px-4 py-2 bg-blue-50 flex justify-center':'text-black px-4 py-2  flex   justify-center'}><p className='flex gap-0.5 items-center'><MdOutlineFilePresent className='text-red-400 font-extrabold'></MdOutlineFilePresent> Place Order</p></NavLink></li>
         }
     </div>
+
+    const adminPanel = 
+    <>
+        <li><Link to="/profile">Profile</Link></li>
+        <li><Link to = {`/my_parcels`}>My parcels</Link></li>
+    </>
+
+    const userPanel = 
+    <>
+        <li><Link to="/profile">Profile</Link></li>
+        <li><Link to = {`/my_parcels`}>My parcels</Link></li>
+    </>
+    const riderPanel = 
+    <>
+        <li><Link to="/profile">Profile</Link></li>
+        <li><Link to = {`/my_parcels`}>My parcels</Link></li>
+    </>
+
 
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [url,setUrl]= useState('');
@@ -80,8 +104,11 @@ function Navbar() {
                             <img src={url} onError={defaultImage} width={30} className='border-green-500 border-4 rounded-full' alt="User" />
                         </div>
                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><Link to="/profile" onClick={closeDropdown}>Profile</Link></li>
-                            <li><Link to = {`/my_parcels`} onClick={closeDropdown}>My parcels</Link></li>
+                        {
+                            role === 'user'?   userPanel :
+                            role === 'rider'?  riderPanel:
+                            adminPanel
+                        }
                         </ul>
                     </div>
                     :
