@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import OrderPage from './OrderPage'
 import Title from '../Components/Title'
 import { Helmet } from 'react-helmet'
 import axios from 'axios'
+import { UserContext } from '../Providers/UserProvider'
+import Spinner from '../Components/Spinner'
 
 function Homepage() {
-  const [data,setData] = useState('');
+  const [data,setData] = useState([]);
+  const {currUser,fetching} = useContext(UserContext);
+
   useEffect(()=>{
-    try{
-        async function a(){
-          const {data} = await axios.get('http://localhost:5007')
-          setData(data);
-        }a();
-    }catch(error){
-      console.log(error)
+    if(!fetching){
+      console.log(currUser)
     }
-  },[])
+  },[fetching])
+
   return (
     <div>
-      <Title title = "Deliver | Home"></Title>
-      <p>{data}</p>
+      <Title title = "Deliver | Home"></Title> 
+
     </div>
   )
 }
