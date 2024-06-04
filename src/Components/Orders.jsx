@@ -2,7 +2,7 @@ import React from 'react'
 
 function Orders({orders}) {
   return (
-    <div className="m-4 p-4 border-2 border-blue-600 rounded-lg shadow overflow-x-auto">
+    <div className="text-xs m-4 p-4 border-2 border-blue-600 rounded-lg shadow overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
@@ -11,7 +11,7 @@ function Orders({orders}) {
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Receiver Name</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Delivery Address</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order Time</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Requested Delivery Date</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Delivery Date</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">

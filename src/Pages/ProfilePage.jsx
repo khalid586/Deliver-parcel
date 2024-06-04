@@ -62,7 +62,7 @@ function ProfilePage() {
                                                 }
                                             </p>
                                             
-                                            <p className={`text-white ${currUser.role === 'user' ? "bg-gray-400": currUser.role === admin? "bg-green-500":"bg-yellow-500"} font-bold px-2 py-0.5 rounded-full`}>{currUser.role}</p>
+                                            <p className={`text-white text-sm ${currUser.role === 'user' ? "bg-gray-400": currUser.role === 'admin'? "bg-green-500":"bg-yellow-500"} font-bold px-2 py-0.5 rounded-xl`}>{currUser.role}</p>
                                             <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{user.displayName}</h5>
                                             <span class="text-sm text-gray-500 dark:text-gray-400">{user.email}</span>
                                             <div class="flex">
