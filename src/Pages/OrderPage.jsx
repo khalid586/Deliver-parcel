@@ -98,7 +98,7 @@ function OrderPage() {
 
     const form = e.target;
 
-    axios.post('http://localhost:5007/place_order',formData)
+    axios.post('https://b9a12-server-side-khalid586.vercel.app/place_order',formData)
     .then(({data}) => {
       console.log(data)
       if(data.acknowledged){

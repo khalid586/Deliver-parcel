@@ -62,7 +62,7 @@ function LoginPage() {
             toast.success('Login Successful')
 
             if(user){
-                axios.put('http://localhost:5007/users',user)
+                axios.put('https://b9a12-server-side-khalid586.vercel.app/users',user)
                 .then(res => console.log(res.data))
                 .then(err => console.log(err))
             }

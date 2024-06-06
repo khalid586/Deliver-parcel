@@ -5,7 +5,7 @@ export default function SaveData(name,email) {
         name,email
     }
     console.log(name,email)
-    axios.post('http://localhost:5007/users',userData)
+    axios.post('https://b9a12-server-side-khalid586.vercel.app/users',userData)
     .then(({data})=> console.log(data))
 
 }

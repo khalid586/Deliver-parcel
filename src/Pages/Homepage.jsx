@@ -1,24 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react'
-import OrderPage from './OrderPage'
 import Title from '../Components/Title'
-import { Helmet } from 'react-helmet'
-import axios from 'axios'
 import { UserContext } from '../Providers/UserProvider'
-import Spinner from '../Components/Spinner'
-import { Link } from 'react-router-dom'
-import { AuthContext } from '../Providers/AuthProvider'
+import Spinner from '../Components/Spinner';
+import { Link } from 'react-router-dom';
+
 
 function Homepage() {
-  const [data,setData] = useState([]);
   const {currUser,fetching} = useContext(UserContext);
-  const {user} = useContext(AuthContext);
+  const [role,setRole] = useState('null'); 
+  console.log(role)
+   
 
-
-  useEffect(()=>{
-    if(!fetching){
-      console.log(currUser)
+  useEffect(()=>{  
+    if(!fetching ){
+      setRole(currUser.role)
+      console.log(role)
     }
-  },[fetching])
+  },[fetching]) 
 
   return (
     <div>
@@ -127,16 +125,14 @@ function Homepage() {
             </div>
           </section>
 
+          <section className='flex justify-center'>
           {
-            !user &&
-            <footer className="py-10  text-white text-center">
-              <Link 
-                className="bg-white text-blue-600 py-2 px-4 
-                rounded hover:shadow-lg shadow"
-                to = '/login'
-              >Sign Up / Log In</Link>
-            </footer>
+            (role === 'null' || role === 'user') &&
+            <Link to = "/place_order" className='px-4 py-2 rounded-xl hover:shadow-lg text-white bg-green-500'>
+              Place an order
+            </Link>
           }
+          </section>
       </div>
     </div>
   )

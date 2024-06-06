@@ -5,7 +5,7 @@ import axios from 'axios';
 export const UserContext = createContext(null);
 
 function UserProvider({children}) {
-    const [currUser,setCUrrUser] = useState({role:null});
+    const [currUser,setCUrrUser] = useState({role:'null'});
     const [fetching,setFetching] = useState(true);
 
     const {user,loading} = useContext(AuthContext);
@@ -13,7 +13,7 @@ function UserProvider({children}) {
     useEffect(()=>{
         if(!loading && user){
             const {displayName:name,email} = user;
-            axios.get('http://localhost:5007/user',{
+            axios.get('https://b9a12-server-side-khalid586.vercel.app/user',{
                 params:
                 {
                     name,

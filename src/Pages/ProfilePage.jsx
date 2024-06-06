@@ -14,7 +14,7 @@ function ProfilePage() {
     const [imgAvailable,setImgAvailable] = useState(true);
     const [url,setUrl]= useState('');
     const [invalidImage,setInvalidImage] = useState(false);
-    const {currUser} = useContext(UserContext);
+    const {currUser,fetching} = useContext(UserContext);
 
     useEffect(()=>{
         if(user.photoURL){
@@ -61,8 +61,10 @@ function ProfilePage() {
                                                    invalidImage && <sup className='absolute w-5/6 font-semibold text-xs text-white bg-red-500  p-1  rounded-full mx-2 '>Invalid URL </sup>
                                                 }
                                             </p>
-                                            
-                                            <p className={`text-white text-sm ${currUser.role === 'user' ? "bg-gray-400": currUser.role === 'admin'? "bg-green-500":"bg-yellow-500"} font-bold px-2 py-0.5 rounded-xl`}>{currUser.role}</p>
+                                            {
+                                                !fetching && currUser.role != 'null' &&
+                                                <p className={`text-white text-sm ${currUser.role === 'user' ? "bg-gray-400": currUser.role === 'admin'? "bg-green-500":"bg-yellow-500"} font-bold px-2 py-0.5 rounded-xl`}>{currUser.role}</p>
+                                            }
                                             <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{user.displayName}</h5>
                                             <span class="text-sm text-gray-500 dark:text-gray-400">{user.email}</span>
                                             <div class="flex">

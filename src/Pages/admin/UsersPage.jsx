@@ -12,7 +12,7 @@ function UsersPage() {
     const {role} = currUser;
 
     useEffect(()=>{
-        axios.get('http://localhost:5007/users')
+        axios.get('https://b9a12-server-side-khalid586.vercel.app/users')
         .then(({data})=>setUsers(data))
         .catch(err=>console.log(err))
     },[])
