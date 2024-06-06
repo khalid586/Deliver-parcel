@@ -4,11 +4,12 @@ import Homepage from '../Pages/Homepage'
 import ErrorPage from "../Pages/ErrorPage";
 import LoginPage from "../Pages/LoginPage"
 import RegisterPage from '../Pages/RegisterPage'
-import ProfilePage from "../Pages/ProfilePage";
+import ProfilePage from "../Pages/Shared/ProfilePage";
 import OrderPage from "../Pages/OrderPage";
 import ProtectedRoute from "./ProtectedRoute";
 import Myparcels from "../Pages/MyParcels";
 import UsersPage from "../Pages/admin/UsersPage";
+import SpecificRoute from "./SpecificRoute";
 
 const  router = createBrowserRouter([
     {
@@ -34,7 +35,7 @@ const  router = createBrowserRouter([
         },
         {
           path:'/place_order',
-          element:<ProtectedRoute><OrderPage></OrderPage></ProtectedRoute>
+          element:<ProtectedRoute><SpecificRoute currRole='user'><OrderPage></OrderPage></SpecificRoute></ProtectedRoute>
         },
         {
           path:'/my_parcels',
@@ -42,7 +43,7 @@ const  router = createBrowserRouter([
         },
         {
           path:'/users',
-          element:<ProtectedRoute><UsersPage></UsersPage></ProtectedRoute>
+          element:<ProtectedRoute><SpecificRoute currRole='admin'><UsersPage></UsersPage></SpecificRoute></ProtectedRoute>
         },
       ]
     },

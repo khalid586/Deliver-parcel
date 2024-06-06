@@ -2,11 +2,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
-import { AuthContext } from '../Providers/AuthProvider';
-import Spinner from '../Components/Spinner';
+import { AuthContext } from '../../Providers/AuthProvider';
+import Spinner from '../../Components/Spinner';
 import { Helmet } from 'react-helmet';
-import { UserContext } from '../Providers/UserProvider';
-
+import { UserContext } from '../../Providers/UserProvider';
 
 
 function ProfilePage() {
