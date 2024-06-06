@@ -1,10 +1,21 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 
 function Users() {
-  return (
-    <div>
-        
-    </div>
+  const [users,setUsers] = useState([]);
+  useEffect(()=>{
+      axios.get('https://b9a12-server-side-khalid586.vercel.app/users')
+      .then(({data})=>setUsers(data))
+      .catch(err=>console.log(err))
+  },[])
+
+  console.log(users)
+    return (
+      <div>
+      {
+        users.map(user => {user.name})
+      }
+      </div>
   )
 }
 

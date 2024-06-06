@@ -27,6 +27,7 @@ function Navbar() {
     <>
         <li><Link to="/profile">Profile</Link></li>
         <li><Link to = {`/users`}>All users</Link></li>
+        <li><Link to = {`/users`}>All Devliveries</Link></li>
     </>
 
     const userPanel = 
@@ -37,7 +38,7 @@ function Navbar() {
     const riderPanel = 
     <>
         <li><Link to="/profile">Profile</Link></li>
-        <li><Link to = {`/my_parcels`}>My parcels</Link></li>
+        <li><Link to = {`/my_parcels`}>My Deliveries</Link></li>
     </>
 
 
