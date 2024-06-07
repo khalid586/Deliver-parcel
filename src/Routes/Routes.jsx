@@ -10,6 +10,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import Myparcels from "../Pages/MyParcels";
 import UsersPage from "../Pages/admin/UsersPage";
 import SpecificRoute from "./SpecificRoute";
+import Deliveries from "../Pages/Shared/Deliveries";
 
 const  router = createBrowserRouter([
     {
@@ -39,11 +40,19 @@ const  router = createBrowserRouter([
         },
         {
           path:'/my_parcels',
-          element:<ProtectedRoute><Myparcels></Myparcels></ProtectedRoute>
+          element:<ProtectedRoute><SpecificRoute currRole='user'><Myparcels></Myparcels></SpecificRoute></ProtectedRoute>
         },
         {
           path:'/users',
           element:<ProtectedRoute><SpecificRoute currRole='admin'><UsersPage></UsersPage></SpecificRoute></ProtectedRoute>
+        },
+        {
+          path:'/deliveries',
+          element:<ProtectedRoute><SpecificRoute currRole='admin'><Deliveries></Deliveries></SpecificRoute></ProtectedRoute>
+        },
+        {
+          path:'/deliveries/:email',
+          element:<ProtectedRoute><SpecificRoute currRole='rider'><Deliveries></Deliveries></SpecificRoute></ProtectedRoute>
         },
       ]
     },

@@ -128,7 +128,7 @@ function Homepage() {
           <section className='flex justify-center'>
           {
             (role === 'null' || role === 'user') &&
-            <Link to = "/place_order" className='px-4 py-2 rounded-xl hover:shadow-lg text-white bg-green-500'>
+            <Link to = "/place_order" className='font-semibold px-4 py-2 rounded-xl hover:shadow-lg text-white bg-green-500'>
               Place an order
             </Link>
           }

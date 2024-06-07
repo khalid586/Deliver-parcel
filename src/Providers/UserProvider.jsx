@@ -9,7 +9,7 @@ function UserProvider({children}) {
     const [fetching,setFetching] = useState(true);
 
     const {user,loading} = useContext(AuthContext);
-
+    console.log(user?.email)
     useEffect(()=>{
         if(!loading && user){
             const {displayName:name,email} = user;
@@ -22,10 +22,7 @@ function UserProvider({children}) {
             })
             .then(({data})=> {
                 setCUrrUser(data); setFetching(false); 
-                console.log(currUser)
             }).catch(err => console.log(err))
-        }else{
-            setFetching(false);
         }
     },[loading,user])
     

@@ -14,6 +14,8 @@ function Navbar() {
     const {currUser} = useContext(UserContext);
     const {role} = currUser;
 
+    console.log(user?.email)
+
     const list = 
     <div className='flex flex-col lg:flex-row gap-2 font-semibold'>
         <li><NavLink to="/" className={({isActive})=>isActive?'text-blue-600 duration-500 rounded-full px-4 py-2 bg-blue-50 flex justify-center':'text-black px-4 py-2  flex   justify-center'}><p className='flex gap-0.5 items-center'><IoHomeOutline className='text-blue-600 font-extrabold'></IoHomeOutline> Home</p></NavLink></li>
@@ -27,7 +29,7 @@ function Navbar() {
     <>
         <li><Link to="/profile">Profile</Link></li>
         <li><Link to = {`/users`}>All users</Link></li>
-        <li><Link to = {`/users`}>All Devliveries</Link></li>
+        <li><Link to = {`/deliveries`}>All Deliveries</Link></li>
     </>
 
     const userPanel = 
@@ -38,7 +40,7 @@ function Navbar() {
     const riderPanel = 
     <>
         <li><Link to="/profile">Profile</Link></li>
-        <li><Link to = {`/my_parcels`}>My Deliveries</Link></li>
+        <li><Link to = {`/deliveries/${user?.email}`}>My Deliveries</Link></li>
     </>
 
 
