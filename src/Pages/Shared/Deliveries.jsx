@@ -3,33 +3,35 @@ import { UserContext } from '../../Providers/UserProvider'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Orders from '../../Components/Orders';
+import Title from '../../Components/Title';
 
 function Deliveries() {
     const {currUser,fetching} = useContext(UserContext);
     const [deliveries,setDeliveries] = useState([]);
+    const [refresh,setRefresh] = useState(true);
     
     const {email} = useParams();
     useEffect(()=>{
         if(!fetching){
             if(currUser.role === 'admin'){
-                    axios.get(`http://localhost:5007/deliveries`)
+                    axios.get(`https://b9a12-server-side-khalid586.vercel.app/deliveries`)
                     .then(({data})=>{
-                        console.log(data);
                         setDeliveries(data);
                     })
             }else{
-                axios.get(`http://localhost:5007/deliveries/${email}`)
+                axios.get(`https://b9a12-server-side-khalid586.vercel.app/deliveries/${email}`)
                 .then(({data})=>{
-                    console.log(data);
                     setDeliveries(data);
                 })
             }
         }
-    },[fetching])
+    },[fetching,refresh])
 
     return (
         <div>
-            <Orders orders={deliveries}></Orders>
+            <Title title = "Deliver | All Deliveries"></Title>
+            <p className='text-center text-3xl font-bold underline my-4'>All Deliveries</p>
+            <Orders orders={deliveries} refresh = {refresh} setRefresh = {setRefresh}></Orders>
         </div>
     )
 }

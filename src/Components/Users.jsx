@@ -13,7 +13,7 @@ function Users() {
     return (
       <div>
       {
-        users.map(user => {user.name})
+        users.map(user => <p>{user.name}</p>)
       }
       </div>
   )
