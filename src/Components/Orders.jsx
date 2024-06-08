@@ -133,7 +133,7 @@ function Orders({orders,refresh,setRefresh}) {
                             }
                           </select>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap"><button key={_id} disabled = {btnDisabled[_id] == undefined?true:btnDisabled[_id]} className={`text-white ${!btnDisabled[_id] && btnDisabled[_id] != undefined ?'bg-green-500':"bg-green-200"} px-4 py-2 rounded-xl`} onClick={()=>handleUpdate(_id,deliveredBy)}>Update</button></td>
+                        <td className="px-6 py-4 whitespace-nowrap"><button key={_id} disabled = {btnDisabled[_id] == undefined?true:btnDisabled[_id]} className={`text-white ${!btnDisabled[_id] && btnDisabled[_id] != undefined ?'bg-green-500':"bg-green-200"} px-4 py-2 rounded-xl`} onClick={()=>handleUpdate(_id,deliveredBy)}>Assign</button></td>
                       </>
                     }
                   </tr>
