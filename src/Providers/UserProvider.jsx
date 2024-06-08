@@ -13,15 +13,16 @@ function UserProvider({children}) {
     useEffect(()=>{
         if(!loading && user){
             const {displayName:name,email} = user;
-            axios.get('https://b9a12-server-side-khalid586.vercel.app/user',{
-                params:
-                {
-                    name,
-                    email,
+            console.log(name,email)
+            axios.get('https://b9a12-server-side-khalid586.vercel.app/user', {
+                params: {
+                  name: name,
+                  email: email,
                 }
-            })
+              })
             .then(({data})=> {
                 setCUrrUser(data); setFetching(false); 
+                console.log(data)
             }).catch(err => console.log(err))
         }
     },[loading,user])

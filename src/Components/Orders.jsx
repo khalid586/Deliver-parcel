@@ -26,7 +26,7 @@ function Orders({orders,refresh,setRefresh}) {
         },
         status : "on the way",
       }
-      axios.patch(`http://localhost:5007/update/${id}`,updatedData)
+      axios.patch(`https://b9a12-server-side-khalid586.vercel.app/update/${id}`,updatedData)
       .then(({data})=>{
         if(data.modifiedCount){
           toast.success("Delivery man assigned successfully!")
@@ -67,7 +67,7 @@ function Orders({orders,refresh,setRefresh}) {
     <>    
       {
         fetching ? <Spinner></Spinner>:
-        <div className="text-xs m-4 p-4 border-2 border-blue-600 rounded-lg shadow overflow-x-auto">
+        <div className="text-xs m-4 p-4 border-2 border-blue-600 rounded-lg shadow overflow-auto">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
@@ -78,11 +78,14 @@ function Orders({orders,refresh,setRefresh}) {
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Receiver Name</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Delivery Address</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order Time</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Delivered By</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Delivery Man</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone Number</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Delivery Date</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Receiver's Phone</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Riders</th>
+                  {
+                    currUser.role === 'admin' && status === 'pending' &&
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Riders</th>
+                  }
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
@@ -105,23 +108,32 @@ function Orders({orders,refresh,setRefresh}) {
                     <td className="px-6 py-4 whitespace-nowrap"> {_id}</td>
                     <td className="px-6 py-4 whitespace-nowrap"> {parcelType}</td>
                     <td className="px-6 py-4 whitespace-nowrap"> {parcelWeight} kg</td>
-                    <td><span className={`p-2 px-3 font-bold text-xs rounded-full whitespace-nowrap text-white ${status === 'pending' ? 'bg-gray-800' :status === 'on the way' ? 'bg-yellow-400' : 'bg-green-500'}`}>{status}</span></td>
+                    <td>
+                      <span className={`p-2 px-3 font-bold text-xs rounded-full whitespace-nowrap text-white
+                       ${status === 'pending' 
+                        ? 'bg-gray-800' :status === 'on the way' 
+                        ? 'bg-yellow-400' : status === 'cancelled'?'bg-red-500':'bg-green-500'
+
+                        }`}>
+                        {status}
+                        </span>
+                    </td>
                     <td className="px-6 py-4 whitespace-nowrap"> {receiverName}</td>
                     <td className="px-6 py-4 whitespace-nowrap"> {parcelDeliveryAddress}</td>
                     <td className="px-6 py-4 whitespace-nowrap"> {orderTime}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-black"> {deliveredBy.name == ''?<p className='font-bold'>Not assigned</p>: deliveredBy.name}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-black font-bold"> {deliveredBy?.name === undefined?<p>pending</p>: deliveredBy.name}</td>
                     <td className="px-6 py-4 whitespace-nowrap"> {phoneNumber}</td>
                     <td className="px-6 py-4 whitespace-nowrap"> {requestedDeliveryDate}</td>
-                    { currUser.role === 'user' &&
-                    <>
-                      <td className="px-6 py-4 whitespace-nowrap"> <Link to = {`update/${_id}`} className={`text-white px-4 ${status != 'pending'?'bg-gray-300 cursor-not-allowed':'bg-green-500'} py-2  rounded-xl hover:shadow-md`} disabled = {status !== 'pending'}>Update</Link></td>
-                      <td className="px-6 py-4 whitespace-nowrap"> <button onClick={()=>handleDelete(e,_id)} className={`text-white px-4 ${status != 'pending'?'bg-gray-300 cursor-not-allowed':'bg-red-500'} py-2  rounded-xl hover:shadow-md`} disabled = {status !== 'pending'}>Cancel</button></td>
-                    </>
-                    }
                     <td className="px-6 py-4 whitespace-nowrap"> {receiverPhoneNumber}</td>
+                    { currUser.role === 'user' && status === 'pending' &&
+                      <>
+                        <td className="px-6 py-4 whitespace-nowrap"> <Link to = {`update/${_id}`} className={`text-white px-4 ${status != 'pending'?'bg-gray-300 cursor-not-allowed':'bg-green-500'} py-2  rounded-xl hover:shadow-md`} disabled = {status !== 'pending'}>Update</Link></td>
+                        <td className="px-6 py-4 whitespace-nowrap"> <button onClick={()=>handleDelete(e,_id)} className={`text-white px-4 ${status != 'pending'?'bg-gray-300 cursor-not-allowed':'bg-red-500'} py-2  rounded-xl hover:shadow-md`} disabled = {status !== 'pending'}>Cancel</button></td>
+                      </>
+                    }
 
                     {
-                      currUser.role === 'admin' &&
+                      currUser.role === 'admin' && status === 'pending' &&
                       <>
                         <td>
                           <select  onChange={(e)=>handleChange(e,_id,deliveredBy)}>
