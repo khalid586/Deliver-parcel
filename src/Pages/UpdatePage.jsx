@@ -42,7 +42,7 @@ function UpdatePage() {
     }, []);
 
     useEffect(()=>{
-        axios.get(`http://localhost:5007/update/${id}`)
+        axios.get(`https://b9a12-server-side-khalid586.vercel.app/update/${id}`)
         .then(({data}) => {
             setProduct(data);
             console.log(data);
@@ -123,7 +123,7 @@ function UpdatePage() {
 
     function handleSubmit(e){
         e.preventDefault();
-        axios.patch(`http://localhost:5007/update/${id}`,formData)
+        axios.patch(`https://b9a12-server-side-khalid586.vercel.app/update/${id}`,formData)
         .then(({data}) => {
             console.log(data)
             if(data.acknowledged){

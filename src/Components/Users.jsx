@@ -29,7 +29,7 @@ function Users() {
       role
     }
     console.log(role,id);
-    axios.patch(`http://localhost:5007/update/user/${id}`,updatedData)
+    axios.patch(`https://b9a12-server-side-khalid586.vercel.app/update/user/${id}`,updatedData)
     .then(({data})=> {
       console.log(data);
       setRefresh(!refresh);

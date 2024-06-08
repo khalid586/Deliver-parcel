@@ -27,7 +27,7 @@ function Orders({orders,refresh,setRefresh}) {
           const data = {
             status:'cancelled'
           }
-          axios.patch(`http://localhost:5007/update/${id}`,data)
+          axios.patch(`https://b9a12-server-side-khalid586.vercel.app/update/${id}`,data)
           .then(res => res.data)
           .then(data => {
               const {modifiedCount} = data;
@@ -59,7 +59,7 @@ function Orders({orders,refresh,setRefresh}) {
           const data = {
             status:'delivered'
           }
-          axios.patch(`http://localhost:5007/update/${id}`,data)
+          axios.patch(`https://b9a12-server-side-khalid586.vercel.app/update/${id}`,data)
           .then(res => res.data)
           .then(data => {
               const {modifiedCount} = data;

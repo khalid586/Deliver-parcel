@@ -20,7 +20,7 @@ function Deliveries() {
                         setDeliveries(data);
                     })
             }else{
-                axios.get(`http://localhost:5007/deliveries/${id}`)
+                axios.get(`https://b9a12-server-side-khalid586.vercel.app/deliveries/${id}`)
                 .then(({data})=>{
                     console.log(data)
                     setDeliveries(data); 
