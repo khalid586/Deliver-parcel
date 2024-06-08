@@ -203,10 +203,10 @@ function Orders({orders,refresh,setRefresh}) {
                           </button>
                         </td>
                       </>
-                    }
+                    } 
 
                     {
-                      currUser.role === 'admin' && status === 'pending' &&
+                      currUser.role === 'admin' && ( status === 'on the way' ||status === 'pending' )&&
                       <>
                         <td>
                           <select  onChange={(e)=>handleChange(e,_id,deliveredBy)}>
