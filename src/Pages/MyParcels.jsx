@@ -4,11 +4,13 @@ import axios from 'axios';
 import Title from '../Components/Title';
 import Orders from '../Components/Orders';
 import Spinner from '../Components/Spinner';
+import { ref } from 'firebase/database';
 
 function Myparcels() {
   const {user} = useContext(AuthContext);
   const [orders,setOrders] = useState([]);
   const [loading,setLoading] = useState(true);
+  const [refresh,setRefresh] = useState(true);
 
 
   useEffect(()=>{
@@ -21,7 +23,7 @@ function Myparcels() {
           params:userData
         }).then(({data}) => {setOrders(data); setLoading(false);})
       }
-  },[])
+  },[refresh])
 
   return (
     <div>
@@ -29,7 +31,7 @@ function Myparcels() {
       <h1 className='text-center text-4xl m-8 mb-16 font-bold underline'>My Orders</h1>
 
       {
-        loading ? <Spinner></Spinner> : orders.length ? <Orders orders = {orders}></Orders> : (<div className='text-center text-xl font-semibold text-red-500'>You don't have any orders</div>)
+        loading ? <Spinner></Spinner> : orders.length ? <Orders orders = {orders} refresh={refresh} setRefresh={setRefresh}></Orders> : (<div className='text-center text-xl font-semibold text-red-500'>You don't have any orders</div>)
       }
 
     </div>

@@ -4,6 +4,7 @@ import { UserContext } from '../Providers/UserProvider'
 import Spinner from './Spinner';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 function Orders({orders,refresh,setRefresh}) { 
   const [selectedOption,setSelectedOption] = useState({});
@@ -13,11 +14,39 @@ function Orders({orders,refresh,setRefresh}) {
   const [currVal,setCurrVal] = useState({});
 
   function handleDelete(id){
-    console.log(id)
+    Swal.fire({
+      title: "Are you sure you want to cancel the order?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, cancel it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+          const data = {
+            status:'cancelled'
+          }
+          axios.patch(`http://localhost:5007/update/${id}`,data)
+          .then(res => res.data)
+          .then(data => {
+              const {modifiedCount} = data;
+              if(modifiedCount){
+                  setRefresh(!refresh);
+                  Swal.fire({
+                      title: "Cancelled!",
+                      text: "Order cancelled Successfully!",
+                      icon: "success"
+                  });
+              }
+          })
+          .catch(err => console.error(err))
+      }
+    });
   } 
 
   function handleUpdate(id){
-      const orderId = id;
+      const orderId = id; 
       console.log(currVal)
       const updatedData = {
         deliveredBy: {
@@ -128,7 +157,7 @@ function Orders({orders,refresh,setRefresh}) {
                     { currUser.role === 'user' && status === 'pending' &&
                       <>
                         <td className="px-6 py-4 whitespace-nowrap"> <Link to = {`/update/${_id}`} className={`text-white px-4 ${status != 'pending'?'bg-gray-300 cursor-not-allowed':'bg-green-500'} py-2  rounded-xl hover:shadow-md`} disabled = {status !== 'pending'}>Update</Link></td>
-                        <td className="px-6 py-4 whitespace-nowrap"> <button onClick={()=>handleDelete(e,_id)} className={`text-white px-4 ${status != 'pending'?'bg-gray-300 cursor-not-allowed':'bg-red-500'} py-2  rounded-xl hover:shadow-md`} disabled = {status !== 'pending'}>Cancel</button></td>
+                        <td className="px-6 py-4 whitespace-nowrap"> <button onClick={()=>handleDelete(_id)} className={`text-white px-4 ${status != 'pending'?'bg-gray-300 cursor-not-allowed':'bg-red-500'} py-2  rounded-xl hover:shadow-md`} disabled = {status !== 'pending'}>Cancel</button></td>
                       </>
                     }
 
