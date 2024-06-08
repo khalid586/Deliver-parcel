@@ -10,7 +10,8 @@ function Deliveries() {
     const [deliveries,setDeliveries] = useState([]);
     const [refresh,setRefresh] = useState(true);
     
-    const {email} = useParams();
+    const {id} = useParams();
+    console.log(id)
     useEffect(()=>{
         if(!fetching){
             if(currUser.role === 'admin'){
@@ -19,18 +20,30 @@ function Deliveries() {
                         setDeliveries(data);
                     })
             }else{
-                axios.get(`https://b9a12-server-side-khalid586.vercel.app/deliveries/${email}`)
+                axios.get(`http://localhost:5007/deliveries/${id}`)
                 .then(({data})=>{
-                    setDeliveries(data);
+                    console.log(data)
+                    setDeliveries(data); 
                 })
+                console.log('hit2')
             }
+            console.log('hit')
         }
     },[fetching,refresh])
 
     return (
         <div>
-            <Title title = "Deliver | All Deliveries"></Title>
-            <p className='text-center text-3xl font-bold underline my-4'>All Deliveries</p>
+            {
+                currUser.role === 'admin' ? 
+                <>                
+                    <Title title = "Deliver | All Deliveries"></Title>
+                    <p className='text-center text-3xl font-bold underline my-4'>All Deliveries</p>
+                </>:
+                <>
+                    <Title title = "Deliver | My Deliveries"></Title>
+                    <p className='text-center text-3xl font-bold underline my-4'>My Deliveries</p>                
+                </>
+            }
             <Orders orders={deliveries} refresh = {refresh} setRefresh = {setRefresh}></Orders>
         </div>
     )

@@ -45,6 +45,38 @@ function Orders({orders,refresh,setRefresh}) {
     });
   } 
 
+  function updateStatus(id){
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, cancel it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+          const data = {
+            status:'delivered'
+          }
+          axios.patch(`http://localhost:5007/update/${id}`,data)
+          .then(res => res.data)
+          .then(data => {
+              const {modifiedCount} = data;
+              if(modifiedCount){
+                  setRefresh(!refresh);
+                  Swal.fire({
+                      title: "Congratulations!",
+                      text: "Order status updated Successfully!",
+                      icon: "success"
+                  });
+              }
+          })
+          .catch(err => console.error(err))
+      }
+    }); 
+  }
+
   function handleUpdate(id){
       const orderId = id; 
       console.log(currVal)
@@ -160,6 +192,18 @@ function Orders({orders,refresh,setRefresh}) {
                         <td className="px-6 py-4 whitespace-nowrap"> <button onClick={()=>handleDelete(_id)} className={`text-white px-4 ${status != 'pending'?'bg-gray-300 cursor-not-allowed':'bg-red-500'} py-2  rounded-xl hover:shadow-md`} disabled = {status !== 'pending'}>Cancel</button></td>
                       </>
                     }
+                    { currUser.role === 'rider' && status === 'on the way' &&
+                      <>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <
+                            button onClick={()=>updateStatus(_id)}
+                            className='btn px-4 py-2 bg-white border border-green-500 font-bold'
+                          >
+                            Delivered
+                          </button>
+                        </td>
+                      </>
+                    }
 
                     {
                       currUser.role === 'admin' && status === 'pending' &&
@@ -175,7 +219,7 @@ function Orders({orders,refresh,setRefresh}) {
                           </select>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap"><button key={_id} disabled = {btnDisabled[_id] == undefined?true:btnDisabled[_id]} className={`text-white ${!btnDisabled[_id] && btnDisabled[_id] != undefined ?'bg-green-500':"bg-green-200"} px-4 py-2 rounded-xl`} onClick={()=>handleUpdate(_id,deliveredBy)}>Assign</button></td>
-                      </>
+                      </> 
                     }
                   </tr>
                 ))}

@@ -52,7 +52,7 @@ const  router = createBrowserRouter([
           element:<ProtectedRoute><SpecificRoute currRole='admin'><Deliveries></Deliveries></SpecificRoute></ProtectedRoute>
         },
         {
-          path:'/deliveries/:email',
+          path:'/deliveries/:id',
           element:<ProtectedRoute><SpecificRoute currRole='rider'><Deliveries></Deliveries></SpecificRoute></ProtectedRoute>
         },
         {

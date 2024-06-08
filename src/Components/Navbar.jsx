@@ -12,7 +12,7 @@ function Navbar() {
 
 
     const {currUser} = useContext(UserContext);
-    const {role} = currUser;
+    const {role,_id} = currUser;
 
     console.log(user?.email)
 
@@ -40,7 +40,7 @@ function Navbar() {
     const riderPanel = 
     <>
         <li><Link to="/profile">Profile</Link></li>
-        <li><Link to = {`/deliveries/${user?.email}`}>My Deliveries</Link></li>
+        <li><Link to = {`/deliveries/${_id}`}>My Deliveries</Link></li>
     </>
 
 
