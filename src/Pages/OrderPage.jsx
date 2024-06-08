@@ -8,17 +8,18 @@ function OrderPage() {
   const { user } = useContext(AuthContext);
   const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
+  const [currentDate, setCurrentDate] = useState('');
+  const [minDate, setMinDate] = useState('');
+  const [price, setPrice] = useState(0);
+  
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     if (user) {
       setDisplayName(user.displayName);
       setEmail(user.email);
     }
   }, [user]);
-
-  const [currentDate, setCurrentDate] = useState('');
-  const [minDate, setMinDate] = useState('');
 
   useEffect(() => {
     const today = new Date();
@@ -65,7 +66,6 @@ function OrderPage() {
     }));
   }, [displayName, email, currentDate]);
 
-  const [price, setPrice] = useState(0);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -95,9 +95,7 @@ function OrderPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const form = e.target;
-
+    
     axios.post('https://b9a12-server-side-khalid586.vercel.app/place_order',formData)
     .then(({data}) => {
       console.log(data)

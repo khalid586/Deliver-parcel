@@ -127,7 +127,7 @@ function Orders({orders,refresh,setRefresh}) {
                     <td className="px-6 py-4 whitespace-nowrap"> {receiverPhoneNumber}</td>
                     { currUser.role === 'user' && status === 'pending' &&
                       <>
-                        <td className="px-6 py-4 whitespace-nowrap"> <Link to = {`update/${_id}`} className={`text-white px-4 ${status != 'pending'?'bg-gray-300 cursor-not-allowed':'bg-green-500'} py-2  rounded-xl hover:shadow-md`} disabled = {status !== 'pending'}>Update</Link></td>
+                        <td className="px-6 py-4 whitespace-nowrap"> <Link to = {`/update/${_id}`} className={`text-white px-4 ${status != 'pending'?'bg-gray-300 cursor-not-allowed':'bg-green-500'} py-2  rounded-xl hover:shadow-md`} disabled = {status !== 'pending'}>Update</Link></td>
                         <td className="px-6 py-4 whitespace-nowrap"> <button onClick={()=>handleDelete(e,_id)} className={`text-white px-4 ${status != 'pending'?'bg-gray-300 cursor-not-allowed':'bg-red-500'} py-2  rounded-xl hover:shadow-md`} disabled = {status !== 'pending'}>Cancel</button></td>
                       </>
                     }

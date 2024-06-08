@@ -11,6 +11,7 @@ import Myparcels from "../Pages/MyParcels";
 import UsersPage from "../Pages/admin/UsersPage";
 import SpecificRoute from "./SpecificRoute";
 import Deliveries from "../Pages/Shared/Deliveries";
+import UpdatePage from "../Pages/UpdatePage";
 
 const  router = createBrowserRouter([
     {
@@ -53,6 +54,10 @@ const  router = createBrowserRouter([
         {
           path:'/deliveries/:email',
           element:<ProtectedRoute><SpecificRoute currRole='rider'><Deliveries></Deliveries></SpecificRoute></ProtectedRoute>
+        },
+        {
+          path:'/update/:id',
+          element:<ProtectedRoute><SpecificRoute currRole='user'><UpdatePage></UpdatePage></SpecificRoute></ProtectedRoute>
         },
       ]
     },
