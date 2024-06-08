@@ -1,4 +1,3 @@
 <!-- 
-    My deliveries page(rider)
- 
+    payment
  -->

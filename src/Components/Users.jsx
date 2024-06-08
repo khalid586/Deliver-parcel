@@ -70,11 +70,11 @@ function Users() {
                     <td>
                       <span className={`py-1 px-2 
                             font-bold text-sm rounded-full 
-                            border-2
+                            
                             whitespace-nowrap 
-                            ${role === 'user' ? 'border-gray-700' :
-                              role === 'rider' ? 'border-yellow-400 text-yellow-500' : 
-                              'border-green-500 text-green-500'
+                            ${role === 'user' ? '' :
+                              role === 'rider' ? ' text-orange-400' : 
+                              ' text-green-500'
                             }`
                           }
                         >{role}
