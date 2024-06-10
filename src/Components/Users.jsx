@@ -5,6 +5,7 @@ import { UserContext } from '../Providers/UserProvider';
 import { ToastContainer, toast } from 'react-toastify';
 import { AuthContext } from '../Providers/AuthProvider';
 import Title from './Title';
+import Swal from 'sweetalert2';
 
 function Users() {
   const [users,setUsers] = useState([]);
@@ -25,17 +26,30 @@ function Users() {
   },[loading,refresh])
 
   function updateUser(role,id){
-    const updatedData = {
-      role
-    }
-    console.log(role,id);
-    axios.patch(`https://b9a12-server-side-khalid586.vercel.app/update/user/${id}`,updatedData)
-    .then(({data})=> {
-      console.log(data);
-      setRefresh(!refresh);
-      toast.success('Role updated successfully')
-    })
-    .catch(error => console.log(error))
+    Swal.fire({
+      title: `Are you sure you want to update this user to ${role}?`,
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!"
+    }).then((result) => {
+          if(result.isConfirmed) {
+            const updatedData = {
+              role
+            }
+            console.log(role,id);
+            axios.patch(`https://b9a12-server-side-khalid586.vercel.app/update/user/${id}`,updatedData)
+            .then(({data})=> {
+              console.log(data);
+              setRefresh(!refresh);
+              toast.success('Role updated successfully')
+            })
+            .catch(error => console.log(error))
+          }
+      }); 
+
   }
 
   console.log(users)
@@ -82,7 +96,7 @@ function Users() {
                     </td>
                     {
                       role === 'user' ?
-                      <td className="px-6 py-4 whitespace-nowrap"><button className='text-white bg-yellow-400 px-4 py-2 font-bold rounded-full' onClick={()=>updateUser('rider',_id)}>Make rider</button></td>
+                      <td className="px-6 py-4 whitespace-nowrap"><button className='text-white bg-orange-400 px-4 py-2 font-bold rounded-full' onClick={()=>updateUser('rider',_id)}>Make rider</button></td>
                       :
                       <td></td>
                     }
