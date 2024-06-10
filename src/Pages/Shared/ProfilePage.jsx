@@ -6,6 +6,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import Spinner from '../../Components/Spinner';
 import { Helmet } from 'react-helmet';
 import { UserContext } from '../../Providers/UserProvider';
+import Swal from 'sweetalert2';
 
 
 function ProfilePage() {
@@ -34,10 +35,22 @@ function ProfilePage() {
     }
 
     function handleLogout(){
-        toast.success('Logged out successfully')
-        setTimeout(()=>{
-            logOut();
-        },1700)
+        Swal.fire({
+            title: "Are you sure you want to logout?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes!"
+          }).then((result) => {
+                if(result.isConfirmed) {
+                    toast.success('Logged out successfully')
+                    setTimeout(()=>{
+                        logOut();
+                    },1700)   
+                }
+            }); 
     }
 
     return(
@@ -71,7 +84,7 @@ function ProfilePage() {
                                                 <a href="#" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Message</a> */}
                                             </div>
                                         </div>
-                                        <button className='mb-8 btn2' onClick={handleLogout}> Logout</button>
+                                        <button className='mb-8 btn bg-red-500 border-none text-white hover:text-red-500' onClick={handleLogout}> Logout</button>
                                 </div>
                             </div>
                     </div> 
