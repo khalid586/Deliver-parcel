@@ -42,12 +42,14 @@ function Homepage() {
               Whether it's across the street or across the country, we've got
               you covered.
             </p>
+
             <Link
               to="/place_order"
-              className="mt-6 inline-block px-6 py-3 bg-green-500 text-white font-bold rounded-full shadow-md hover:bg-green-600 transition duration-300"
+              className="mt-6 inline-block px-6 py-3 text-white font-bold rounded-full shadow-md bg-gradient-to-r from-green-400 via-green-500 to-green-600 bg-[length:200%_auto] animate-wave transition duration-300"
             >
-              Get Started
-            </Link>
+                Get Started
+            </Link>  
+
           </div>
           <div className="absolute top-0 right-0 w-64 h-64 bg-blue-400 opacity-20 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-400 opacity-20 rounded-full blur-3xl"></div>

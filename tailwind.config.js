@@ -10,12 +10,22 @@ export default {
   ],
   theme: {
     extend: {
-        fontFamily: {
-          'custom': ['Manrope'], // Define your custom font family
+      fontFamily: {
+        'custom': ['Manrope'], // Define your custom font family
+      },
+      animation: {
+        'bounce-slow': 'bounce 2s infinite',
+        wave: 'wave 1.5s linear infinite', // Add wave animation here
+      },
+      keyframes: { // Correctly define keyframes under `keyframes`
+        wave: {
+          '0%': { backgroundPosition: '200% 0' },
+          '100%': { backgroundPosition: '-200% 0' },
         },
-        
       },
     },
+  },
+  
     plugins: [
       require('daisyui'),
     function({ addUtilities }) {
