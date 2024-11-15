@@ -76,7 +76,16 @@ function Navbar() {
                 </ul>
             </div>
             <Link className="font-bold text-xl mx-[-4px]" to = '/'>
-                <p className='flex gap-1'> <img src = '/truck-solid.svg' width={20}></img> Deliver</p>
+                <p className="flex items-center gap-2 text-lg font-semibold text-gray-700 hover:text-blue-600 transition duration-300">
+                    <img
+                        src="/truck-solid.svg"
+                        alt="Truck Icon"
+                        className="w-6 h-6 animate-bounce-slow"
+                    />
+                    <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent font-extrabold">
+                        Deliver
+                    </span>
+                </p>
             </Link>
         </div>
 
