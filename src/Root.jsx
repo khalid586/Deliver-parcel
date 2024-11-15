@@ -6,10 +6,12 @@ import { Outlet } from 'react-router-dom'
 function Root() {
   return (
     <div className='font-custom'>
+      <div className='md:mx-12 lg:mx-20'>
         <Navbar></Navbar>
-            <div className='min-h-[80vh]'>
-                <Outlet></Outlet>
-            </div>
+          <div className='min-h-[80vh]'>
+              <Outlet></Outlet>
+          </div>
+      </div>
         <Footer></Footer>
     </div>
   )
