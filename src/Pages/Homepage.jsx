@@ -45,9 +45,9 @@ function Homepage() {
 
             <Link
               to="/place_order"
-              className="mt-6 inline-block px-6 py-3 text-white font-bold rounded-full shadow-md bg-gradient-to-r from-green-400 via-green-500 to-green-600 bg-[length:200%_auto] animate-wave transition duration-300"
+              className="mt-6 inline-block px-6 py-3 text-white font-bold rounded-lg shadow-md bg-gradient-to-r from-green-400 via-green-500 to-green-600 bg-[length:200%_auto] animate-wave transition duration-300"
             >
-                Get Started
+                Place an order
             </Link>  
 
           </div>
