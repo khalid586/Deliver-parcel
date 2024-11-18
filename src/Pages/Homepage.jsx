@@ -177,19 +177,19 @@ function Homepage() {
         </section>
 
         {/* Call to Action */}
+        {(role === 'null' || role === 'user') && (
         <section className="py-10 bg-gradient-to-r from-green-400 to-blue-400 text-white text-center">
           <h2 className="text-3xl font-bold mb-6">
             Ready to Deliver Smarter?
           </h2>
-          {(role === 'null' || role === 'user') && (
               <Link
               to="/place_order"
               className="mt-6 inline-block px-6 py-3 text-white font-bold rounded-lg shadow-md bg-gradient-to-r from-green-400 via-green-500 to-green-600 bg-[length:200%_auto] animate-wave transition duration-300"
               >
                 Place an order
               </Link>  
-          )}
         </section>
+        )}
       </div>
     </div>
   );
