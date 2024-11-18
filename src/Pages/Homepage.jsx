@@ -43,12 +43,14 @@ function Homepage() {
               you covered.
             </p>
 
-            <Link
+            {(role === 'null' || role === 'user') && (
+              <Link
               to="/place_order"
               className="mt-6 inline-block px-6 py-3 text-white font-bold rounded-lg shadow-md bg-gradient-to-r from-green-400 via-green-500 to-green-600 bg-[length:200%_auto] animate-wave transition duration-300"
-            >
+              >
                 Place an order
-            </Link>  
+              </Link>  
+            )}
 
           </div>
           <div className="absolute top-0 right-0 w-64 h-64 bg-blue-400 opacity-20 rounded-full blur-3xl"></div>
